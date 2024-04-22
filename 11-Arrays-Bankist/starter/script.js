@@ -196,9 +196,27 @@ btnClose.addEventListener('click', function (e) {
     const index = accounts.findIndex(
       acc => acc.usernamme === currentAccount.username
     );
+    // delete accounts
     accounts.splice(index, 1);
+    // hide UI
+    containerApp.style.opacity = 0;
   }
-}); 
+  inputCloseUsername.value = inputClosePin.value = '';
+});
+
+// loan
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    //add amount
+    currentAccount.movements.push(amount);
+    // update Ui
+    updateUI(currentAccount);
+  }
+
+  inputLoanAmount.value = '';
+});
 //////////////////////////
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -338,13 +356,50 @@ currenciesUnique.forEach(function (value, _, map) {
   console.log(`${value}: ${value}`);
 });
 
+console.log(movements);
+// includes checks only for equality
+console.log(movements.includes(-130)); // returns true
+
+//SOME : checks condition
+const anyDeposits = movements.some(mov => mov > 0);
+console.log(anyDeposits); // true
+
+// EVERY: return true if all the elements satifies the condition
+const everyDeposits = movements.some(mov => mov > 0);
+console.log(everyDeposits); // false
+
+// seperate call back
+const deposit = mov => mov > 0;
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
+
+//FLAT
+const arr3 = [[1, 2, 3], 4, 5, [6, 7], 8];
+console.log(arr3.flat()); // [1, 2, 3, 4, 5, 6, 7, 8]
+
+const arr4 = [[1, [2, 3]], 4, 5, [6, [7]], 8];
+console.log(arr4.flat()); //[1, [2,3], 4, 5, 6, [7], 8]  cleans only one level
+console.log(arr4.flat(2)); // [1, 2, 3, 4, 5, 6, 7, 8]
+
+const allAccountsMovements = accounts.map(acc => acc.movements);
+console.log(allAccountsMovements);
+console.log(allAccountsMovements.flat());
+const overallBalance = allAccountsMovements.flat().reduce((acc, mov) => acc + mov,0);
+console.log(overallBalance);
+
+//FlatMAP
+const overallBal = accounts.flatMap( acc=> acc. movements).reduce((acc, mov) => acc + mov,0)
+console.log(overallBal);
+
+// coding challenge
 const checkDogs = function (arr1, arr2) {
   const dogsJuliaCorrected = arr1.slice(); // copied  array
   dogsJuliaCorrected.splice(0, 1);
   dogsJuliaCorrected.splice(-2);
-  console.log(dogsJuliaCorrected);
+  // console.log(dogsJuliaCorrected);
   const dogs = dogsJuliaCorrected.concat(arr2);
-  console.log(dogs);
+  // console.log(dogs);
 
   dogs.forEach(function (dog, i) {
     if (dog >= 3) {
