@@ -61,9 +61,11 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movement) {
+const displayMovements = function (movement, sort = false) {
   containerMovements.innerHTML = '';
-  movement.forEach(function (mov, i) {
+
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `
      <div class="movements__row">
@@ -73,7 +75,8 @@ const displayMovements = function (movement) {
       <div class="movements__value">${mov}€</div>
     </div>
    `;
-    containerMovements.insertAdjacentHTML('afterbegin', html); // Review
+    // Review
+    containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
 // displayMovements(account1.movements);
@@ -217,6 +220,13 @@ btnLoan.addEventListener('click', function (e) {
 
   inputLoanAmount.value = '';
 });
+let sorted = false;
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
+});
+
 //////////////////////////
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -385,13 +395,49 @@ console.log(arr4.flat(2)); // [1, 2, 3, 4, 5, 6, 7, 8]
 const allAccountsMovements = accounts.map(acc => acc.movements);
 console.log(allAccountsMovements);
 console.log(allAccountsMovements.flat());
-const overallBalance = allAccountsMovements.flat().reduce((acc, mov) => acc + mov,0);
+const overallBalance = allAccountsMovements
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
 console.log(overallBalance);
 
 //FlatMAP
-const overallBal = accounts.flatMap( acc=> acc. movements).reduce((acc, mov) => acc + mov,0)
+const overallBal = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
 console.log(overallBal);
 
+//SORT : mutates the original array: bt converting the elements into string
+const owners = ['Jonas', 'John', 'Zach', 'Adam', 'Martha'];
+console.log(owners.sort());
+console.log(movements.sort()); // doesn't work with numbers
+
+// sorting in ascending order
+// Return < 0 A,B keep order
+// Return > 0 B,A switch order
+movements.sort((a, b) => {
+  if (a > b) return 1;
+  if (a < b) return -1;
+});
+console.log(movements);
+
+movements.sort((a, b) => a - b);
+console.log(movements);
+
+const x = new Array(7); // empty array
+console.log(x);
+x.fill(3);
+x.fill(1, 3, 5);
+arr.fill(23, 3, 4);
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z);
+
+labelBalance.addEventListener('click', function() {
+  const movementUI = Array.from( document.querySelectorAll('.movement__value'));
+  console.log(movementUI);
+
+}) 
 // coding challenge
 const checkDogs = function (arr1, arr2) {
   const dogsJuliaCorrected = arr1.slice(); // copied  array
@@ -424,3 +470,5 @@ const calcAverageHumanAge = function (ages) {
 };
 
 calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+
+// arra pratice
