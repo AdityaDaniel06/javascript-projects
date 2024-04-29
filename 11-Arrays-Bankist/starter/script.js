@@ -61,7 +61,7 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movement, sort = false) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
 
   const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
@@ -72,7 +72,7 @@ const displayMovements = function (movement, sort = false) {
       <div class="movements__type movements__type--${type}"> ${
       i + 1
     }  ${type}</div>
-      <div class="movements__value">${mov}€</div>
+      <div class="movements__value">${mov.toFixed(2)}€</div>
     </div>
    `;
     // Review
@@ -113,7 +113,7 @@ const updateUI = function (acc) {
 const calDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, movement) => acc + movement, 0);
 
-  labelBalance.textContent = `${acc.balance}€`;
+  labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
 };
 // calDisplayBalance(account1.movements);
 
@@ -126,7 +126,7 @@ const calcDisplaySummary = function (acc) {
   const outBalance = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(outBalance)}€`;
+  labelSumOut.textContent = `${Math.abs(outBalance.toFixed(2))}€`;
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -136,7 +136,7 @@ const calcDisplaySummary = function (acc) {
       return dep >= 1;
     })
     .reduce((acc, dep) => acc + dep, 0);
-  labelSumInterest.textContent = `${interest}€`;
+  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
 };
 // calcDisplaySummary(account1.movements);
 
