@@ -155,6 +155,9 @@ const updateUI = function (acc) {
 // Event handlers
 let currentAccount;
 
+// fake always logged in
+
+
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
@@ -292,3 +295,52 @@ console.log(Math.floor(-23.8));
 console.log((3.81).toFixed(0)); // returns string
 console.log((+3.81).toFixed(3));
 console.log((+3.81).toFixed(4));
+
+// labelBalance.addEventListener('click' , function(){
+//   [...document.querySelectorAll('.movements__row')].forEach(function ( row , i){
+//     if( i % 2 === 0){
+//       row.style.backgroundColor = 'lightorange';
+//     }
+//   })
+// })
+
+const diameter = 287_460_000_000; // Numeric seprators ---- 287460000000
+const priceCents = 345_45; // 34545
+
+// BigInt
+//It cannot be mixed with other types
+
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(Number.MIN_SAFE_INTEGER);
+console.log(Number.MAX_VALUE);
+console.log(Number.MIN_VALUE);
+console.log(Number.EPSILON);
+console.log(Number.isSafeInteger(Number.MAX_SAFE_INTEGER));
+
+console.log(3891373498324823423403044354353453454544422300n);
+console.log(BigInt(456789013232));
+console.log(BigInt(456789013232) + BigInt(456789013232));
+console.log(495432434234324n + 334234343242n);
+
+const num = 23;
+const hugeNum = 213231232312312n;
+console.log(hugeNum + BigInt(num));
+
+// Dates
+//creating a date
+const now = new Date();
+console.log(now);
+console.log(now.getFullYear());
+console.log(now.getMonth()); // zero based
+console.log(now.getDate());
+console.log(now.getDay()); //.4 thrusday
+console.log(now.getHours());
+console.log(now.getMinutes());
+console.log(now.getSeconds());
+console.log(now.toISOString()); // 2024-05-02T13:09:19.242Z
+console.log(now.toTimeString()); // 18:43:59 GMT+0530 (India Standard Time)
+
+console.log(Date.now()); // Mon Dec 02 2024 06:00:00 GMT+0530 (India Standard Time)
+
+console.log(new Date('May 02 2024 18:29:01'));
+console.log(new Date(2024,11,2,6,0)); // Mon Dec 02 2024 06:00:00 GMT+0530 (India Standard Time)
