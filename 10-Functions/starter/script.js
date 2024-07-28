@@ -71,7 +71,7 @@ const upperFirstWord = function (str) {
 const transformer = function (str, fn) {
   console.log(`original String: ${str}`);
   console.log(`transformed String: ${fn(str)}`);
-  console.log(`transformed by: ${fn.name}`);
+  console.log(`transformed  by: ${fn.name}`);
 };
 
 transformer('javaScript is the best', upperFirstWord);
@@ -100,9 +100,9 @@ const lufthansa = {
   airline: 'lufthansa',
   iataCode: 'LH',
   bookings: [],
+  // --> enhanced object literal syntax
+  // book: function() {}
   book(flightNum, name) {
-    // --> enhanced object literal syntax
-    // book: function() {}
     console.log(
       `${name} booked a seat on ${this.airline} flight ${this.iataCode} on ${flightNum}`
     );
@@ -118,15 +118,18 @@ const eurowings = {
   airline: 'Eurowings',
   iataCode: 'EW',
   bookings: [],
-  // we want the book method here as well
+  // we want the book method here as well , copying the same method from above is a bad coding practise
 };
 
-const book = lufthansa.book; // for using book fn on eurowings, swiss, assigned it in a new function
+// for using book fn on eurowings, swiss,creating a new function by assigned it in a new variable
+const book = lufthansa.book;
 // book(23, 'Sarah Williams'); // Cannot read properties of undefined (reading 'airline')
 // regular fn call , this keyword inside of it points to undefined
+// book function is not the same method as luftansa.book(it's a copy)
 
 // Review to fix the issue of 'this' to point to eurowings -- call() , apply() , bind()
-book.call(eurowings, 123, 'Sarah Williams'); // call(what/ wgich obj 'this' needs to point to, other agruments...)
+book.call(eurowings, 123, 'Sarah Williams');
+// call(what/ which obj 'this' needs to point to, other agruments...)
 console.log(eurowings);
 book.call(lufthansa, 239, 'Mary Cooper');
 
@@ -138,7 +141,7 @@ const swiss = {
 };
 book.call(swiss, 5465, 'Jones marshall');
 
-// Apply method apply(obj , arrayOfAgruments[])
+// Apply method Review apply(obj , arrayOfAgruments[])
 const flightData = [5465, 'George Cooper'];
 book.apply(swiss, flightData); //--> not that much used these days
 book.call(swiss, ...flightData); // same as apply method
@@ -265,12 +268,12 @@ f();
 h();
 f();
 
-const boardPassengers= function(n , wait){
-  const perGroup = n/3;
-  setTimeout(function(){
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+  setTimeout(function () {
     console.log(`we are now boarding a;; ${n} passengers `);
     console.log(`There are 3 groups , each with ${perGroup} passengers`);
-  } , wait* 1000)
-}
+  }, wait * 1000);
+};
 
-boardPassengers(180, 3)
+boardPassengers(180, 3);

@@ -42,21 +42,22 @@
       SET is a collection of unique values ie no duplicate values --> let orderSet = new Set(any iterables)
       Map is stored in key value: keys can have any types
       */
-const arr = [2, 4, 6];
+const arlr = [2, 4, 6];
 // normal breaking an array
 const a = arr[0];
 const b = arr[1];
 const c = arr[2];
-// destructuring an array in js:NOTE const [  varibale name] = array
-const [x, y, z] = arr; //  destructuring assignment !array; original arr remains unchanged
+// destructuring an array in js
+// :NOTE const [  varibale name] = array
+const [x, y, z] = arr; //  destructuring assignment array; original arr remains unchanged
 
 // nested array destructuring
 const nested = [2, 4, [5, 6]];
 const [f, , g] = nested; // Output console.log( f, g); 2,[5,6]
-const [i, , [j, k]] = nested; //cl(1 , j, k);  2,5,6  as separate varibles. destructuting inside of destructuring
+const [i, d, [j, k]] = nested; //cl(2,4 , j, k);  2,5,6  as separate varibles. destructuting inside of destructuring
 
 // set default values: use case- length of array is unknown
-// const [p ,q ,r] = [2, 5]; r undefined
+// const [p ,q ,r] = 2 5 undefined
 const [p = 1, q = 1, r = 1] = [2, 5]; // intialiization
 
 // Data needed for a later exercise
@@ -110,9 +111,11 @@ const restaurant = {
   },
 };
 
-// const [first, second] = restaurant.categories;  italian pizzeria
-const [first, , second] = restaurant.categories; // const[x, ,y ] = Italian Vegetarian
+const [first, second] = restaurant.categories; //italian pizzeria
 console.log(first, second);
+// const [x, ,y ] = Italian Vegetarian(leave a hole to skip a value)
+const [first1, , second1] = restaurant.categories;
+console.log(first1, second1);
 
 let [main, secondary] = restaurant.categories;
 [main, secondary] = [secondary, main]; // switch values of variables without temp variables
@@ -121,10 +124,11 @@ let [main, secondary] = restaurant.categories;
   secondary = temp*/
 
 restaurant.order(2, 0); // [starterMenu[Garclic bread] , mainMenu[Pizza]]
-// receive 2 return values from function: creating  2 varibles from one function call 
+// receive 2 return values from function: creating  2 varibles from one function call
 const [theStarter, theMainCourse] = restaurant.order(2, 0);
 // console.log(theStarter , theMainCourse);
 
+//==========================================
 // object destructuring const{x,y,z} = object
 const { name, openingHours, categories } = restaurant;
 console.log(name, openingHours, categories);
@@ -232,8 +236,8 @@ add(...xy);
 restaurant.orderPizza('mushrooms', 'olivies', 'spinach');
 restaurant.orderPizza('sweetcorn');
 
-//Logical operators OR || :first truety value
-console.log(3 || 'Jonas'); //3
+// Logical operators OR|| can return any any datatype. Short circuiting :first truety value
+console.log(3 || 'Jonas'); // 3
 console.log('' || 'Jonas'); // Jonas
 console.log(true || 0); // true
 console.log(undefined || null); // null
@@ -290,7 +294,7 @@ rest2.owner &&= '<ANONYMOUS>'; // if exists then reassigns
 const menu2 = [...restaurant.starterMenu, ...restaurant.mainMenu];
 for (const i of menu2) console.log(i);
 
-// to get index in for of is tough
+// to get index in for of loop is tough
 // OUTPUT :returns a nested array with index and each element as inner array
 // console.log(i);
 for (const i of menu2.entries()) console.log(`${i[0] + 1}: ${i[1]}`);

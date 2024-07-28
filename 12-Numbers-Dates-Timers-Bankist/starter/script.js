@@ -363,3 +363,48 @@ console.log(Date.now()); // Mon Dec 02 2024 06:00:00 GMT+0530 (India Standard Ti
 
 console.log(new Date('May 02 2024 18:29:01'));
 console.log(new Date(2024, 11, 2, 6, 0)); // Mon Dec 02 2024 06:00:00 GMT+0530 (India Standard Time)
+
+setTimeout(() => {
+  console.log('Hello');
+}, 3000);
+console.log('waiting...');
+
+const ingredients = ['olives' , ' cheese' , 'spinch']
+const pizzaTimer = setTimeout(
+  (ing1, ing2) => console.log(`hello ${ing1} and ${ing2}`),
+  3000,
+  ...ingredients
+);
+if( ingredients.includes('spinch')) clearTimeout(pizzaTimer);
+
+
+setInterval(() => {
+  const now = new Date();
+  console.log(now);
+} , 1000)
+
+//count down timer
+
+const startLogOutTimer = function(){
+  //set timer to 5 min
+  let time = 100;
+  const min = String( Math.trunc(time/ 60)).padStart(2, 0);
+  const sec = String(time % 60).padStart(2,0);
+
+  // call the timer every second
+  const stopWatch= setInterval( function(){
+    labelTimer.textContent = `${min} : ${sec}`;
+
+    time--;
+
+
+  if(time === 0){
+    clearInterval(timer);
+    labelTimer.textContent = 'Time is up';
+    labelTimer.style.color ='red';
+    containerApp.style.opacity = 100;
+  }
+  }, 1000)
+  // 
+
+}

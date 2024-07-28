@@ -235,21 +235,27 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 
 let arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
-
+// ---------0    1    2    3    4    5    6    7
 //SLICE === does not change the original array
-console.log(arr.slice(2, 5)); // (start index, end index)  ['c', 'd', 'e'] end parameter excluded
+// The slice() method of Array instances returns a shallow copy of a portion of an array into a new array object
+// selected from start to end (end not included)
 console.log(arr.slice(3)); // ['d', 'e', 'f', 'g', 'h']
+console.log(arr.slice(2, 5)); // (start index, end index)  ['c', 'd', 'e'] end parameter excluded
 console.log(arr.slice(-2)); // ['g', 'h'] --> from end
 console.log(arr.slice(-1)); // ['h'] -->last element of the array
+console.log(arr.slice(-2)); // ['g' ,'h'] -->last 2 element of the array
 console.log(arr.slice(1, -2));
 console.log(arr.slice()); // making a shallow copy
 console.log([...arr]); // same as above
+
+// console.log(typeof(arr)); // object
 
 // SPLICE: extracted elements are permanetaly removed from the array
 // console.log(arr.splice(2));
 // console.log(arr.splice(-1)); delete last element
 // console.log(arr.splice(2, 2)); // startindex and number of elements to be removed
-// console.log(arr);
+// console.log(arr.splice(1, 0, 'Feb'));
+// console.log(arr);  ["a", "Feb", "b", "f", "g", "h"]
 
 //REVERSE : mutates the original array
 const arr2 = ['i', 'j', 'n', 'l', 'k'];
@@ -341,12 +347,12 @@ const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 // }
 /// forEach
 //no break or continue allowed
-movements.forEach(function (movement, index, array) {
+movements.forEach(function (movement, i, arrayLoopingOver) {
   // order of agruments matters
   if (movement > 0) {
-    console.log(`Movement ${index + 1} ++You deposited $ ${movement}`);
+    console.log(`Movement ${i + 1} ++You deposited $ ${movement}`);
   } else {
-    console.log(`Movement ${index + 1}--You withdraw $ ${Math.abs(movement)}`);
+    console.log(`Movement ${i + 1}--You withdraw $ ${Math.abs(movement)}`);
   }
 });
 
@@ -433,11 +439,10 @@ console.log(y);
 const z = Array.from({ length: 7 }, (_, i) => i + 1);
 console.log(z);
 
-labelBalance.addEventListener('click', function() {
-  const movementUI = Array.from( document.querySelectorAll('.movement__value'));
+labelBalance.addEventListener('click', function () {
+  const movementUI = Array.from(document.querySelectorAll('.movement__value'));
   console.log(movementUI);
-
-}) 
+});
 // coding challenge
 const checkDogs = function (arr1, arr2) {
   const dogsJuliaCorrected = arr1.slice(); // copied  array

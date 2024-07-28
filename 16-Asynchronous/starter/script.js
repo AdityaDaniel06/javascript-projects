@@ -3,7 +3,7 @@
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 
-///////////////////////////////////////
+//////////AJAX CALL ///////////////////////////// 
 // const req = new XMLHttpRequest();
 // // req.open('GET','https://restcountries.eu/rest/v2/all',true);
 // req.open('GET', 'https://restcountries.com/v3.1/name/portugal', true);
@@ -95,3 +95,8 @@ const whereAmI = function (lat, lng) {
 whereAmI(52.508, 13.381);
 whereAmI(19.037, 72.873);
 whereAmI(-33.933, 18.474);
+
+//////////ASync AWAIT
+const whereAm = async function(country){
+  await fetch()
+}
