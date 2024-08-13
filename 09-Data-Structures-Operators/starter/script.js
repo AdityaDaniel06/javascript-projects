@@ -147,7 +147,7 @@ console.log(menu, starters);
 let ai = 111;
 let bi = 999;
 const obj = { ai: 23, bi: 7, ci: 14 };
-({ ai, bi } = obj); // cl(a,b) // 23 ,7
+({ ai, bi } = obj); // cl(ai,bi) // 23 ,7 varibles over written
 
 // nested objects destructuring
 // const { objectname: {innerObject}}
